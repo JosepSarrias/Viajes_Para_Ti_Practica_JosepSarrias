@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello VerController!{% endblock %}
+
+{% block stylesheets %}
+<style> 
+table {
+    width:100vw;
+    border-spacing:0;
+}
+.boton { 
+    width: 80px;
+    height: 50px;
+  background-color:red;
+  border-radius: 10px;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+a:link, a:visited {
+    text-decoration: none;
+    cursor: pointer;
+    color:blue;
+}
+.boton:hover {
+    background-color:yellow;
+    transition:all 0.5s ease-out;
+    cursor:pointer;
+    transform: translateY(10px);
+}
+.contenedor {
+    
+    display:flex;
+    justify-content:center;
+  width:100vw;
+}
+
+</style>
+{% endblock %}
+
+{% block body %}
+
+<table border='1'>
+<tr>
+<th> Nombre</th>
+<th>Correo</th>
+<th>Telefono</th>
+<th>Tipo_de_Proveedor</th>
+<th>Estado</th>
+<th>Eliminar</th>
+<th>Editar</th>
+
+{% for i in conjunto %}
+
+<tr>
+<td>{{i.Nombre}}</td>
+<td>{{i.Correoelectronico}}</td>
+<td>{{i.TelefonodeContacto}}</td>
+<td>{{i.TipodeProveedor}}</td>
+<td>{{i.Estado}}</td>
+<td>
+<a href="{{ path('app_borrar',{id:i.id})}}">eliminiar</a>
+</td>
+<td>
+<a href="{{ path('modificando',{id:i.id})}}">Editar</a>
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+<div class="contenedor">
+<div class="boton">
+<a href="/">Añadir</a>
+</div>
+</div>
+{% endblock %}
